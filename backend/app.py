@@ -43,8 +43,10 @@ logger = logging.getLogger("ai-counseling-platform")
 app = Flask(__name__, static_folder=None)
 CORS(app)
 
-FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
-
+FRONTEND_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "frontend"
+)
 
 # ---------------------------------------------------------------------------
 # Prompt 构建（内置教育学 / 剧本创作规范）
