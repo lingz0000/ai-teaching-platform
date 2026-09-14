@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人工智能心理咨询陪练系统</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 星光背景容器 -->
+</head>
+<body>
+  <div id="stars" aria-hidden="true"></div>
+
+  <!-- ============ 顶部导航栏 ============ -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="nav-logo">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3L2 8l10 5 10-5-10-5z"/>
+          <path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/>
+        </svg>
+      </div>
+      <h1 class="nav-title">人工智能心理咨询陪练系统</h1>
+      <span class="nav-badge">智能咨询引擎</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-username">张老师</span>
+      <div class="nav-avatar">张</div>
+    </div>
+  </header>
+
+  <!-- ============ 主体 ============ -->
+  <main class="container">
+
+    <!-- Tab 切换 -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="lesson">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        教案生成
+      </button>
+      <button class="tab-btn" data-tab="script">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+        </svg>
+        情景剧脚本生成
+      </button>
+    </nav>
+
+    <!-- ============ 教案生成面板 ============ -->
+    <section id="panel-lesson" class="panel active">
+      <div class="layout">
+        <div class="card form-card">
+          <h2 class="card-title">教案参数配置</h2>
+          <p class="card-desc">填写教学需求，平台将为你生成一份结构完整、可直接落地的专业教案。</p>
+
+          <div class="form-group">
+            <label for="lesson-topic">课程主题 <i class="required">*</i></label>
+            <input type="text" id="lesson-topic" placeholder="例如：光的折射现象 / 唐诗中的月亮意象">
+          </div>
+
+          <div class="form-group">
+            <label>学段</label>
+            <div class="segment-group" id="lesson-stage">
+              <button class="segment active" data-value="小学">小学</button>
+              <button class="segment" data-value="初中">初中</button>
+              <button class="segment" data-value="高中">高中</button>
+              <button class="segment" data-value="大学">大学</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>课时长度</label>
+            <div class="segment-group" id="lesson-duration">
+              <button class="segment" data-value="40">40 分钟</button>
+              <button class="segment active" data-value="45">45 分钟</button>
+              <button class="segment" data-value="90">90 分钟</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>教学风格偏好</label>
+            <div class="segment-group" id="lesson-style">
+              <button class="segment active" data-value="互动型">互动型</button>
+              <button class="segment" data-value="讲授型">讲授型</button>
+              <button class="segment" data-value="体验式">体验式</button>
+            </div>
+          </div>
+
+          <button class="btn-primary btn-generate" id="btn-lesson">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 3l14 9-14 9V3z"/>
+            </svg>
+            <span>生成教案</span>
+          </button>
+        </div>
+
+        <div class="card result-card">
+          <div class="result-header">
+            <h2 class="card-title">生成结果</h2>
+            <div class="result-actions">
+              <button class="btn-ghost" id="copy-lesson">复制</button>
+              <button class="btn-ghost" id="export-lesson">导出 txt</button>
+            </div>
+          </div>
+          <div class="result-body" id="result-lesson">
+            <div class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3L2 8l10 5 10-5-10-5z"/>
+                  <path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/>
+                </svg>
+              </div>
+              <p>教案生成结果将在这里展示</p>
+              <span>填写左侧参数，点击「生成教案」开始体验</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 情景剧脚本生成面板 ============ -->
+    <section id="panel-script" class="panel">
+      <div class="layout">
+        <div class="card form-card">
+          <h2 class="card-title">情景剧参数配置</h2>
+          <p class="card-desc">描述剧本需求，平台将为你创作一部结构完整、寓教于乐的校园情景剧。</p>
+
+          <div class="form-group">
+            <label for="script-topic">剧本主题 <i class="required">*</i></label>
+            <input type="text" id="script-topic" placeholder="例如：诚信 / 校园垃圾分类 / 网络安全">
+          </div>
+
+          <div class="form-group">
+            <label for="script-characters">角色人数</label>
+            <select id="script-characters">
+              <option value="2">2 人</option>
+              <option value="3">3 人</option>
+              <option value="4" selected>4 人</option>
+              <option value="5">5 人</option>
+              <option value="6">6 人</option>
+              <option value="8">8 人</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>时长</label>
+            <div class="segment-group" id="script-duration">
+              <button class="segment" data-value="5">5 分钟</button>
+              <button class="segment active" data-value="10">10 分钟</button>
+              <button class="segment" data-value="15">15 分钟</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="script-setting">场景设定</label>
+            <input type="text" id="script-setting" placeholder="例如：教室 / 操场 / 未来科技馆（可留空自动设定）">
+          </div>
+
+          <div class="form-group">
+            <label>多结局版本</label>
+            <div class="segment-group" id="script-multi-ending">
+              <button class="segment active" data-value="否">否</button>
+              <button class="segment" data-value="是">是</button>
+            </div>
+          </div>
+
+          <button class="btn-primary btn-generate" id="btn-script">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 3l14 9-14 9V3z"/>
+            </svg>
+            <span>生成脚本</span>
+          </button>
+        </div>
+
+        <div class="card result-card">
+          <div class="result-header">
+            <h2 class="card-title">生成结果</h2>
+            <div class="result-actions">
+              <button class="btn-ghost" id="copy-script">复制</button>
+              <button class="btn-ghost" id="export-script">导出 txt</button>
+            </div>
+          </div>
+          <div class="result-body" id="result-script">
+            <div class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                </svg>
+              </div>
+              <p>情景剧脚本生成结果将在这里展示</p>
+              <span>填写左侧参数，点击「生成脚本」开始体验</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">人工智能心理咨询陪练系统 · 智能陪练 · 让每一次对话练习更专业</footer>
+
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
